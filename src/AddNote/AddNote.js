@@ -20,6 +20,8 @@ export default class AddNote extends Component {
       folder_id: e.target['note-folder-id'].value,
       modified: new Date(),
     }
+    if (newNote.title && newNote.content && newNote.folder_id !== '...')
+    {
     fetch(`${config.API_ENDPOINT}/notes`, {
       method: 'POST',
       headers: {
@@ -39,6 +41,8 @@ export default class AddNote extends Component {
       .catch(error => {
         console.error({ error })
       })
+    }
+    else alert('Please fill all fields')
   }
 
   render() {
